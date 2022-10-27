@@ -70,10 +70,3 @@ if __name__ == "__main__":
     main()
     images = load_images_from_folder("img2")
     load_image_result("result")
-    #print("images", images)
-    #for filename in os('img2'):
-	    # load image
-	    #img_data = Image.imread('img2/' + filename)
-	    #store loaded image
-	    #loaded_images.append(img_data)
-	    #print('> loaded %s %s' % (filename, img_data.shape))

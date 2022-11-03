@@ -1,13 +1,20 @@
+from cgi import print_directory
 from unittest import result
 from PIL import Image
 import cv2
 import os
+
+from matplotlib import image
 
 def resize_img( imge):
     img_resize = Image.open("img2/"+imge)
     new_img = img_resize.resize((1180,960))
     return new_img
     
+def resize_logo( imge):
+    img_resize = Image.open("result_logo/"+ imge)
+    new_img = img_resize.resize((498,182))
+    return new_img
 
 #example
 def main():
@@ -19,6 +26,9 @@ def main():
     print(image.mode) # Output: RGB
 
     print(image.size) # Output: (1920, 1280)
+
+    print("get size images", image.height)
+    print("get size images", image.width)
 
     print(image.palette) # Output: None
     image_bg = Image.open('big.jpg')
@@ -66,7 +76,20 @@ def load_image_result(folder):
         image_bg.save("out/"+filename)
         #image_bg.show()
 
+# import phonenumber
+def load_import_numberpone(folder):
+    image_main = Image.open("result_logo/"+ 'logo3d.png')
+
+    #resize_logo(image_main)
+    postion = (50, 50)
+    for filename in os.listdir(folder):
+        logo_hk = Image.open("result/"+ filename)
+        image_bg = logo_hk.copy()
+        image_bg.paste(image_main,postion)
+        image_bg.save("result_logo/"+ filename)
+
 if __name__ == "__main__":
     main()
     images = load_images_from_folder("img2")
     load_image_result("result")
+    load_import_numberpone("img2")
